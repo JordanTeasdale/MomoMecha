@@ -13,5 +13,7 @@ namespace MomoMecha.Data
         {
 
         }
+
+        public DbSet<Gundam> Gundams { get; set; }
     }
 }
