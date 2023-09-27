@@ -132,5 +132,10 @@
       }
     }
   },
-  "defaultProject": "MomoMecha"
+  "defaultProject": "MomoMecha",
+  "cli": {
+    "cache": {
+      "enabled": false
+    }
+  }
 }
