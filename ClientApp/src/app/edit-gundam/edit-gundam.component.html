@@ -1,0 +1,21 @@
+<div *ngIf="gundam">
+  <h2>{{ gundam.name }}</h2>
+  <div class="mb-2">
+    <label class="form-label" >Name</label>
+    <input class="form-control" [(ngModel)]="gundam.name" placeholder="Name" />
+  </div>
+  <div class="mb-2">
+    <label class="form-label" >Series</label>
+    <input class="form-control" [(ngModel)]="gundam.series" placeholder="Series" />
+  </div>
+  <div class="mb-2">
+    <label class="form-label" >Grade</label>
+    <input class="form-control" [(ngModel)]="gundam.grade" placeholder="Grade" />
+  </div>
+  <div class="mb-2">
+    <label class="form-label" >Scale</label>
+    <input class="form-control" [(ngModel)]="gundam.scale" placeholder="Scale" />
+  </div>
+  <button class="btn btn-success" (click)="createGundam(gundam)">Create</button>
+</div>
+

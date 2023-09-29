@@ -1,0 +1,28 @@
+<h1 id="tableLabel">Gundams Built</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+<button class="btn btn-primary" (click)="initNewGundam()">Create New Gundam</button>
+<app-edit-gundam [gundam]="gundamToEdit" (gundamUpdated)="updateGundamList($event)"></app-edit-gundam>
+
+<p *ngIf="!gundam?.length"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="gundam.length">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Series</th>
+      <th>Grade</th>
+      <th>Scale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let gundam of gundam">
+      <td>{{ gundam.name }}</td>
+      <td>{{ gundam.series }}</td>
+      <td>{{ gundam.grade }}</td>
+      <td>{{ gundam.scale }}</td>
+    </tr>
+  </tbody>
+</table>
+
