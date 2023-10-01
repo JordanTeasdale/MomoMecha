@@ -10,7 +10,7 @@
 
         public string Grade { get; set; }
 
-        public int Scale { get; set; }
+        public string Scale { get; set; }
 
         public ApplicationUser ApplicationUser { get; set; }
     }

@@ -21,13 +21,19 @@ export class FetchGundamComponent {
     window.location.reload()
   }
 
-  initNewGundam() {
-    this.gundamToEdit = new Gundam();
+  toggleEditForm() {
+    if (this.gundamToEdit) {
+      this.gundamToEdit = undefined;
+    } else {
+      this.gundamToEdit = new Gundam();
+    }
   }
 
   deleteGundam(gundam: Gundam) {
-    this.gundamService
-      .deleteGundam(gundam)
-      .subscribe((gundams: Gundam[]) => (this.gundams = gundams));
+    if (window.confirm('Mobile Suit Pilot, do you truly wish to annihilate this target?')) {
+      this.gundamService
+        .deleteGundam(gundam)
+        .subscribe((gundams: Gundam[]) => (this.gundams = gundams));
+    }
   }
 }

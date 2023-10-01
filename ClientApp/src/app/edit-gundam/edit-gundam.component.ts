@@ -10,9 +10,27 @@ export class EditGundamComponent implements OnInit {
   @Input() gundam?: Gundam;
   @Output() gundamsUpdated = new EventEmitter<Gundam[]>();
 
+  series: string[] = [];
+  grades: string[] = [];
+  scales: string[] = [];
+
   constructor(private gundamService: GundamService) {}
 
-  ngOnInit(): void { }
+  ngOnInit(): void {
+    this.series = [
+      'Universal Century',
+      'Witch From Mercury',
+      'IBO'
+    ];
+    this.grades = [
+      'MG',
+      'HG'
+    ];
+    this.scales = [
+      '1/144',
+      '1/100'
+    ];
+  }
 
   createGundam(gundam: Gundam) {
       this.gundamService

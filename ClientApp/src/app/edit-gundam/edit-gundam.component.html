@@ -1,20 +1,27 @@
 <div *ngIf="gundam">
   <h2>{{ gundam.name }}</h2>
   <div class="mb-2">
-    <label class="form-label" >Name</label>
+    <label class="form-label">Name</label>
     <input class="form-control" [(ngModel)]="gundam.name" placeholder="Name" />
   </div>
   <div class="mb-2">
-    <label class="form-label" >Series</label>
-    <input class="form-control" [(ngModel)]="gundam.series" placeholder="Series" />
+    <label class="form-label">Series</label>
+    <select class="form-select" [(ngModel)]="gundam.series" name="series">
+      <option *ngFor="let seriesItem of series" [value]="seriesItem">{{ seriesItem }}</option>
+    </select>
   </div>
   <div class="mb-2">
-    <label class="form-label" >Grade</label>
-    <input class="form-control" [(ngModel)]="gundam.grade" placeholder="Grade" />
+    <label class="form-label">Grade</label>
+    <select class="form-select" [(ngModel)]="gundam.grade" name="grade">
+      <option *ngFor="let gradeItem of grades" [value]="gradeItem">{{ gradeItem }}</option>
+    </select>
   </div>
   <div class="mb-2">
-    <label class="form-label" >Scale</label>
-    <input class="form-control" [(ngModel)]="gundam.scale" placeholder="Scale" />
+    <label class="form-label">Scale</label>
+    <select class="form-select" [(ngModel)]="gundam.scale" name="scale">
+      <option *ngFor="let scaleItem of scales" [value]="scaleItem">{{ scaleItem }}</option>
+    </select>
   </div>
   <button class="btn btn-success" (click)="createGundam(gundam)">Create</button>
 </div>
+
