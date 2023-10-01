@@ -3,11 +3,11 @@
 <p>This component demonstrates fetching data from the server.</p>
 
 <button class="btn btn-primary" (click)="initNewGundam()">Create New Gundam</button>
-<app-edit-gundam [gundam]="gundamToEdit" (gundamUpdated)="updateGundamList($event)"></app-edit-gundam>
+<app-edit-gundam [gundam]="gundamToEdit" (gundamsUpdated)="updateGundamList($event)"></app-edit-gundam>
 
-<p *ngIf="!gundam?.length"><em>Loading...</em></p>
+<p *ngIf="!gundams?.length"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="gundam.length">
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="gundams && gundams.length">
   <thead>
     <tr>
       <th>Name</th>
@@ -17,11 +17,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let gundam of gundam">
+    <tr *ngFor="let gundam of gundams">
       <td>{{ gundam.name }}</td>
       <td>{{ gundam.series }}</td>
       <td>{{ gundam.grade }}</td>
       <td>{{ gundam.scale }}</td>
+      <td>
+        <button class="btn btn-danger btn-sm" (click)="deleteGundam(gundam)" *ngIf="gundam.id">X</button>
+      </td>
     </tr>
   </tbody>
 </table>

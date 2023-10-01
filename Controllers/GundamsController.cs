@@ -8,6 +8,7 @@ using System.Security.Claims;
 
 namespace MomoMecha.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("[controller]")]
     public class GundamsController : ControllerBase
@@ -22,7 +23,6 @@ namespace MomoMecha.Controllers
         }
 
         [HttpGet]
-        [Authorize]
         public async Task<ActionResult<List<Gundam>>> Get()
         {
             var model = await _context.Gundams
@@ -32,7 +32,6 @@ namespace MomoMecha.Controllers
         }
 
         [HttpPost]
-        [Authorize]
         public async Task<ActionResult<List<Gundam>>> Post(Gundam gundam)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -43,6 +42,23 @@ namespace MomoMecha.Controllers
             await _context.SaveChangesAsync();
 
             return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<List<Gundam>>> Delete(int id)
+        {
+            var gundam = await _context.Gundams.FindAsync(id);
+            if (gundam == null)
+                return BadRequest("Gundam not found.");
+
+            _context.Gundams.Remove(gundam);
+            await _context.SaveChangesAsync();
+
+            var model = await _context.Gundams
+                .Where(a => a.ApplicationUser.Id == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value)
+                .ToListAsync();
+
+            return Ok(model);
         }
     }
 }

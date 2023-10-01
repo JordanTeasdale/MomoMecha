@@ -7,24 +7,27 @@ import { GundamService } from '../services/gundam.service';
   templateUrl: './fetch-gundam.component.html'
 })
 export class FetchGundamComponent {
-  gundam: Gundam[] = [];
+  gundams: Gundam[] = [];
   gundamToEdit?: Gundam;
 
   constructor(private gundamService: GundamService) {}
 
   ngOnInit() : void {
-    this.gundamService.getGundam().subscribe((result: Gundam[]) => (this.gundam = result));
+    this.gundamService.getGundam().subscribe((result: Gundam[]) => (this.gundams = result));
   }
 
-  updateGundamList(gundam: Gundam[]) {
-    this.gundam = gundam;
+  updateGundamList(newGundam: Gundam[]) {
+    this.gundams = newGundam;
+    window.location.reload()
   }
 
   initNewGundam() {
     this.gundamToEdit = new Gundam();
   }
 
-  editGundam(gundam: Gundam) {
-    this.gundamToEdit = gundam;
+  deleteGundam(gundam: Gundam) {
+    this.gundamService
+      .deleteGundam(gundam)
+      .subscribe((gundams: Gundam[]) => (this.gundams = gundams));
   }
 }

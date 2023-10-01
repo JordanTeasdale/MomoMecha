@@ -17,4 +17,9 @@ export class GundamService {
   public createGundam(gundam: Gundam) : Observable<Gundam[]> {
     return this.http.post<Gundam[]>(`${environment.baseUrl}/${this.url}`, gundam);
   }
+  public deleteGundam(gundam: Gundam): Observable<Gundam[]> {
+    return this.http.delete<Gundam[]>(
+      `${environment.baseUrl}/${this.url}/${gundam.id}`
+    );
+  }
 }

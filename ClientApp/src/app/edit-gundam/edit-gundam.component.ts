@@ -8,7 +8,7 @@ import { GundamService } from '../services/gundam.service';
 })
 export class EditGundamComponent implements OnInit {
   @Input() gundam?: Gundam;
-  @Output() gundamUpdated = new EventEmitter<Gundam[]>();
+  @Output() gundamsUpdated = new EventEmitter<Gundam[]>();
 
   constructor(private gundamService: GundamService) {}
 
@@ -17,6 +17,6 @@ export class EditGundamComponent implements OnInit {
   createGundam(gundam: Gundam) {
       this.gundamService
         .createGundam(gundam)
-        .subscribe((gundam: Gundam[]) => this.gundamUpdated.emit(gundam));
+        .subscribe((newGundam: Gundam[]) => this.gundamsUpdated.emit(newGundam));
   }
 }
