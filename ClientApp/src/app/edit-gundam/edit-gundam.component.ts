@@ -20,15 +20,30 @@ export class EditGundamComponent implements OnInit {
     this.series = [
       'Universal Century',
       'Witch From Mercury',
-      'IBO'
+      'IBO',
+      'Build Fighters/Divers',
+      'Gundam Wing',
+      'Gundam Seed',
+      'Gundam 00',
+      'Gundam Thunderbolt',
+      'G Gundam',
+      'Gundam Age',
+      'Gundam F91'
     ];
     this.grades = [
       'MG',
-      'HG'
+      'RG',
+      'PG',
+      'HG',
+      'SD',
+      'RE',
+      'Entry'
     ];
     this.scales = [
       '1/144',
-      '1/100'
+      '1/100',
+      '1/60',
+      '1/72'
     ];
   }
 

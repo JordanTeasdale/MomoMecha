@@ -2,23 +2,23 @@
   <h2>{{ gundam.name }}</h2>
   <div class="mb-2">
     <label class="form-label">Name</label>
-    <input class="form-control" [(ngModel)]="gundam.name" placeholder="Name" />
+    <input class="form-control" [(ngModel)]="gundam.name" placeholder="Name" required />
   </div>
   <div class="mb-2">
     <label class="form-label">Series</label>
-    <select class="form-select" [(ngModel)]="gundam.series" name="series">
+    <select class="form-select" [(ngModel)]="gundam.series" name="series" required >
       <option *ngFor="let seriesItem of series" [value]="seriesItem">{{ seriesItem }}</option>
     </select>
   </div>
   <div class="mb-2">
     <label class="form-label">Grade</label>
-    <select class="form-select" [(ngModel)]="gundam.grade" name="grade">
+    <select class="form-select" [(ngModel)]="gundam.grade" name="grade" required >
       <option *ngFor="let gradeItem of grades" [value]="gradeItem">{{ gradeItem }}</option>
     </select>
   </div>
   <div class="mb-2">
     <label class="form-label">Scale</label>
-    <select class="form-select" [(ngModel)]="gundam.scale" name="scale">
+    <select class="form-select" [(ngModel)]="gundam.scale" name="scale" required >
       <option *ngFor="let scaleItem of scales" [value]="scaleItem">{{ scaleItem }}</option>
     </select>
   </div>

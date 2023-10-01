@@ -12,7 +12,7 @@ using MomoMecha.Data;
 namespace MomoMecha.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20231001055427_updateModel")]
+    [Migration("20231001180102_updateModel")]
     partial class updateModel
     {
         /// <inheritdoc />
@@ -380,15 +380,19 @@ namespace MomoMecha.Data.Migrations
                         .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Grade")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Scale")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Series")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
