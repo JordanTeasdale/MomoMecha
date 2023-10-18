@@ -18,6 +18,8 @@ namespace MomoMecha.Models
         [Required(ErrorMessage = "Scale is required")]
         public string Scale { get; set; }
 
+        public string ImageUrl { get; set; }
+
         public ApplicationUser ApplicationUser { get; set; }
     }
 }

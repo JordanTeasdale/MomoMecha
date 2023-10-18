@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MomoMecha.Data;
 using MomoMecha.Models;
+using MomoMecha.Services;
 using System.Security.Claims;
 
 namespace MomoMecha.Controllers
@@ -15,11 +16,13 @@ namespace MomoMecha.Controllers
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
+        private readonly PhotoService _photoService;
 
-        public GundamsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public GundamsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, PhotoService photoService)
         {
             _context = context;
             _userManager = userManager;
+            _photoService = photoService;
         }
 
         [HttpGet]
@@ -32,13 +35,16 @@ namespace MomoMecha.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Gundam>>> Post(Gundam gundam)
+        public async Task<ActionResult<List<Gundam>>> Post([FromForm] Gundam gundam, IFormFile file)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await _userManager.FindByIdAsync(userId);
+            var result = await _photoService.AddPhotoAsync(file);
 
             gundam.ApplicationUser = user;
+            gundam.ImageUrl = result.Url.ToString();
             _context.Gundams.Add(gundam);
+
             await _context.SaveChangesAsync();
 
             return Ok();
