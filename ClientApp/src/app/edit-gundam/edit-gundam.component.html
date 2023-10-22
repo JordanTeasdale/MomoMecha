@@ -1,27 +1,34 @@
-<div *ngIf="gundam">
-  <h2>{{ gundam.name }}</h2>
-  <div class="mb-2">
-    <label class="form-label">Name</label>
-    <input class="form-control" [(ngModel)]="gundam.name" placeholder="Name" required />
+<form enctype="multipart/form-data">
+  <div *ngIf="gundam">
+    <h2>{{ gundam.name }}</h2>
+    <div class="mb-2">
+      <label class="form-label">Name</label>
+      <input class="form-control" [(ngModel)]="gundam.name" name="name" placeholder="Name" required />
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Series</label>
+      <select class="form-select" [(ngModel)]="gundam.series" name="series" required>
+        <option *ngFor="let seriesItem of series" [value]="seriesItem">{{ seriesItem }}</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Grade</label>
+      <select class="form-select" [(ngModel)]="gundam.grade" name="grade" required>
+        <option *ngFor="let gradeItem of grades" [value]="gradeItem">{{ gradeItem }}</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Scale</label>
+      <select class="form-select" [(ngModel)]="gundam.scale" name="scale" required>
+        <option *ngFor="let scaleItem of scales" [value]="scaleItem">{{ scaleItem }}</option>
+      </select>
+    </div>
+    <div class="row">
+      <div class="col-md-3">
+        <h3>Select Image</h3>
+        <input class="form-control-file" (change)="onImageSelected($event)" name="file" type="file" />
+      </div>
+    </div>
+    <button class="btn btn-success mt-3" (click)="createGundam(gundam)">Create</button>
   </div>
-  <div class="mb-2">
-    <label class="form-label">Series</label>
-    <select class="form-select" [(ngModel)]="gundam.series" name="series" required >
-      <option *ngFor="let seriesItem of series" [value]="seriesItem">{{ seriesItem }}</option>
-    </select>
-  </div>
-  <div class="mb-2">
-    <label class="form-label">Grade</label>
-    <select class="form-select" [(ngModel)]="gundam.grade" name="grade" required >
-      <option *ngFor="let gradeItem of grades" [value]="gradeItem">{{ gradeItem }}</option>
-    </select>
-  </div>
-  <div class="mb-2">
-    <label class="form-label">Scale</label>
-    <select class="form-select" [(ngModel)]="gundam.scale" name="scale" required >
-      <option *ngFor="let scaleItem of scales" [value]="scaleItem">{{ scaleItem }}</option>
-    </select>
-  </div>
-  <button class="btn btn-success" (click)="createGundam(gundam)">Create</button>
-</div>
-
+</form>

@@ -3,5 +3,6 @@ export class Gundam {
   name = "";
   series = "";
   grade = "";
-  scale?: number;
+  scale = "";
+  imageUrl?: File;
 }

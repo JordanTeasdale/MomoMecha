@@ -8,25 +8,20 @@
 
 <p *ngIf="!gundams?.length"><em>Loading...</em></p>
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="gundams && gundams.length">
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Series</th>
-      <th>Grade</th>
-      <th>Scale</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let gundam of gundams">
-      <td>{{ gundam.name }}</td>
-      <td>{{ gundam.series }}</td>
-      <td>{{ gundam.grade }}</td>
-      <td>{{ gundam.scale }}</td>
-      <td>
-        <button class="btn-close" (click)="deleteGundam(gundam)" *ngIf="gundam.id"></button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="row mt-3">
+  <div class="col-md-4" *ngFor="let gundam of gundams">
+    <div class="card mb-3">
+      <img [src]="gundam.imageUrl" class="card-img-top" alt="Gundam Image">
+      <div class="card-body">
+        <h5 class="card-title">{{ gundam.name }}</h5>
+        <p class="card-text">
+          <strong>Series:</strong> {{ gundam.series }}<br>
+          <strong>Grade:</strong> {{ gundam.grade }}<br>
+          <strong>Scale:</strong> {{ gundam.scale }}
+        </p>
+        <button class="btn btn-danger" (click)="deleteGundam(gundam)" *ngIf="gundam.id">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
 

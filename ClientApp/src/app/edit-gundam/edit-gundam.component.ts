@@ -17,6 +17,7 @@ export class EditGundamComponent implements OnInit {
   constructor(private gundamService: GundamService) {}
 
   ngOnInit(): void {
+
     this.series = [
       'Universal Century',
       'Witch From Mercury',
@@ -47,9 +48,24 @@ export class EditGundamComponent implements OnInit {
     ];
   }
 
+  onImageSelected(event: any) {
+    const file: File = event.target.files[0];
+    this.gundam!.imageUrl = file;
+  }
+
   createGundam(gundam: Gundam) {
-      this.gundamService
-        .createGundam(gundam)
-        .subscribe((newGundam: Gundam[]) => this.gundamsUpdated.emit(newGundam));
+    const formData = new FormData();
+    formData.append('name', gundam.name);
+    formData.append('series', gundam.series);
+    formData.append('grade', gundam.grade);
+    formData.append('scale', gundam.scale);
+
+    if (gundam.imageUrl) {
+      formData.append('file', gundam.imageUrl, gundam.imageUrl.name);
+    }
+
+    this.gundamService
+      .createGundam(formData)
+      .subscribe((newGundam: Gundam[]) => this.gundamsUpdated.emit(newGundam));
   }
 }
