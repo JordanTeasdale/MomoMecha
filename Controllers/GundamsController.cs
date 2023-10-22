@@ -57,8 +57,12 @@ namespace MomoMecha.Controllers
             if (gundam == null)
                 return BadRequest("Gundam not found.");
 
+            var imageUrl = gundam.ImageUrl;
+
             _context.Gundams.Remove(gundam);
             await _context.SaveChangesAsync();
+
+            _ = _photoService.DeletePhotoAsync(imageUrl);
 
             var model = await _context.Gundams
                 .Where(a => a.ApplicationUser.Id == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value)
