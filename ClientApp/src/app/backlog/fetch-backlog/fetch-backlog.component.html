@@ -1,0 +1,33 @@
+<h1 id="tableLabel">Gundam Backlog</h1>
+
+<p>This component demonstrates fetching data from the server.</p>
+
+
+<button class="btn btn-primary" (click)="toggleEditForm()">Create New Gundam</button>
+<app-edit-backlog [backlog]="backlogToEdit" (backlogsUpdated)="updateBacklogList($event)"></app-edit-backlog>
+
+<p *ngIf="!backlogs?.length"><em>Loading...</em></p>
+
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="backlogs && backlogs.length">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Series</th>
+      <th>Grade</th>
+      <th>Scale</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let backlog of backlogs">
+      <td>{{ backlog.name }}</td>
+      <td>{{ backlog.series }}</td>
+      <td>{{ backlog.grade }}</td>
+      <td>{{ backlog.scale }}</td>
+      <td>
+        <button class="btn-close" (click)="deleteBacklog(backlog)" *ngIf="backlog.id"></button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+

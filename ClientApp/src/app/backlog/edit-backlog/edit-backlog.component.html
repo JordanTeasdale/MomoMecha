@@ -1,0 +1,28 @@
+<form>
+  <div *ngIf="backlog">
+    <h2>{{ backlog.name }}</h2>
+    <div class="mb-2">
+      <label class="form-label">Name</label>
+      <input class="form-control" [(ngModel)]="backlog.name" name="name" required />
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Series</label>
+      <select class="form-select" [(ngModel)]="backlog.series" name="series" required>
+        <option *ngFor="let seriesItem of series" [value]="seriesItem">{{ seriesItem }}</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Grade</label>
+      <select class="form-select" [(ngModel)]="backlog.grade" name="grade" required>
+        <option *ngFor="let gradeItem of grades" [value]="gradeItem">{{ gradeItem }}</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Scale</label>
+      <select class="form-select" [(ngModel)]="backlog.scale" name="scale" required>
+        <option *ngFor="let scaleItem of scales" [value]="scaleItem">{{ scaleItem }}</option>
+      </select>
+    </div>
+    <button class="btn btn-success mt-3" (click)="createBacklog(backlog)">Create</button>
+  </div>
+</form>

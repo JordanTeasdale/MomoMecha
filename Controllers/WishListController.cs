@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MomoMecha.Data;
 using MomoMecha.Models;
-using MomoMecha.Services;
 using System.Security.Claims;
 
 namespace MomoMecha.Controllers
@@ -12,38 +11,34 @@ namespace MomoMecha.Controllers
     [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class GundamsController : ControllerBase
+    public class WishListController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly PhotoService _photoService;
 
-        public GundamsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, PhotoService photoService)
+        public WishListController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
-            _photoService = photoService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Gundam>>> Get()
+        public async Task<ActionResult<List<WishList>>> Get()
         {
-            var model = await _context.Gundams
+            var model = await _context.WishList
                     .Where(a => a.ApplicationUser.Id == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value)
                     .ToListAsync();
             return Ok(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Gundam>>> Post([FromForm] Gundam gundam, IFormFile file)
+        public async Task<ActionResult<List<WishList>>> Post(WishList wishList)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await _userManager.FindByIdAsync(userId);
-            var result = await _photoService.AddPhotoAsync(file);
 
-            gundam.ApplicationUser = user;
-            gundam.ImageUrl = result.Url.ToString();
-            _context.Gundams.Add(gundam);
+            wishList.ApplicationUser = user;
+            _context.WishList.Add(wishList);
 
             await _context.SaveChangesAsync();
 
@@ -51,20 +46,16 @@ namespace MomoMecha.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Gundam>>> Delete(int id)
+        public async Task<ActionResult<List<WishList>>> Delete(int id)
         {
-            var gundam = await _context.Gundams.FindAsync(id);
-            if (gundam == null)
+            var wishlist = await _context.WishList.FindAsync(id);
+            if (wishlist == null)
                 return BadRequest("Gundam not found.");
 
-            var imageUrl = gundam.ImageUrl;
-
-            _context.Gundams.Remove(gundam);
+            _context.WishList.Remove(wishlist);
             await _context.SaveChangesAsync();
 
-            _ = _photoService.DeletePhotoAsync(imageUrl);
-
-            var model = await _context.Gundams
+            var model = await _context.WishList
                 .Where(a => a.ApplicationUser.Id == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value)
                 .ToListAsync();
 

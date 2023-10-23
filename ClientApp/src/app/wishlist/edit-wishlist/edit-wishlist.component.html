@@ -1,0 +1,28 @@
+<form>
+  <div *ngIf="wishlist">
+    <h2>{{ wishlist.name }}</h2>
+    <div class="mb-2">
+      <label class="form-label">Name</label>
+      <input class="form-control" [(ngModel)]="wishlist.name" name="name" required />
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Series</label>
+      <select class="form-select" [(ngModel)]="wishlist.series" name="series" required>
+        <option *ngFor="let seriesItem of series" [value]="seriesItem">{{ seriesItem }}</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Grade</label>
+      <select class="form-select" [(ngModel)]="wishlist.grade" name="grade" required>
+        <option *ngFor="let gradeItem of grades" [value]="gradeItem">{{ gradeItem }}</option>
+      </select>
+    </div>
+    <div class="mb-2">
+      <label class="form-label">Scale</label>
+      <select class="form-select" [(ngModel)]="wishlist.scale" name="scale" required>
+        <option *ngFor="let scaleItem of scales" [value]="scaleItem">{{ scaleItem }}</option>
+      </select>
+    </div>
+    <button class="btn btn-success mt-3" (click)="createWishList(wishlist)">Create</button>
+  </div>
+</form>

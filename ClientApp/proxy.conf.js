@@ -7,6 +7,8 @@ const PROXY_CONFIG = [
   {
     context: [
       "/gundams",
+      "/backlog",
+      "/wishList",
       "/_configuration",
       "/.well-known",
       "/Identity",

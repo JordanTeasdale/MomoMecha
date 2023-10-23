@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MomoMecha.Data;
 using MomoMecha.Models;
-using MomoMecha.Services;
 using System.Security.Claims;
 
 namespace MomoMecha.Controllers
@@ -12,38 +11,34 @@ namespace MomoMecha.Controllers
     [Authorize]
     [ApiController]
     [Route("[controller]")]
-    public class GundamsController : ControllerBase
+    public class BacklogController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly PhotoService _photoService;
 
-        public GundamsController(ApplicationDbContext context, UserManager<ApplicationUser> userManager, PhotoService photoService)
+        public BacklogController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
-            _photoService = photoService;
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Gundam>>> Get()
+        public async Task<ActionResult<List<Backlog>>> Get()
         {
-            var model = await _context.Gundams
+            var model = await _context.Backlogs
                     .Where(a => a.ApplicationUser.Id == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value)
                     .ToListAsync();
             return Ok(model);
         }
 
         [HttpPost]
-        public async Task<ActionResult<List<Gundam>>> Post([FromForm] Gundam gundam, IFormFile file)
+        public async Task<ActionResult<List<Backlog>>> Post(Backlog backlog)
         {
             var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
             var user = await _userManager.FindByIdAsync(userId);
-            var result = await _photoService.AddPhotoAsync(file);
 
-            gundam.ApplicationUser = user;
-            gundam.ImageUrl = result.Url.ToString();
-            _context.Gundams.Add(gundam);
+            backlog.ApplicationUser = user;
+            _context.Backlogs.Add(backlog);
 
             await _context.SaveChangesAsync();
 
@@ -51,20 +46,16 @@ namespace MomoMecha.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ActionResult<List<Gundam>>> Delete(int id)
+        public async Task<ActionResult<List<Backlog>>> Delete(int id)
         {
-            var gundam = await _context.Gundams.FindAsync(id);
-            if (gundam == null)
+            var backlog = await _context.Backlogs.FindAsync(id);
+            if (backlog == null)
                 return BadRequest("Gundam not found.");
 
-            var imageUrl = gundam.ImageUrl;
-
-            _context.Gundams.Remove(gundam);
+            _context.Backlogs.Remove(backlog);
             await _context.SaveChangesAsync();
 
-            _ = _photoService.DeletePhotoAsync(imageUrl);
-
-            var model = await _context.Gundams
+            var model = await _context.Backlogs
                 .Where(a => a.ApplicationUser.Id == HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value)
                 .ToListAsync();
 
