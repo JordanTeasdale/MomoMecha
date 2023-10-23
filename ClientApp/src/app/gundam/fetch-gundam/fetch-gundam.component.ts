@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { Gundam } from '../models/gundam';
-import { GundamService } from '../services/gundam.service';
+import { Gundam } from '../../_models/gundam';
+import { GundamService } from '../../_services/gundam.service';
 
 @Component({
   selector: 'app-fetch-gundam',

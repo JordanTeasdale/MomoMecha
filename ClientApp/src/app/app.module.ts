@@ -10,8 +10,8 @@ import { HomeComponent } from './home/home.component';
 import { ApiAuthorizationModule } from 'src/api-authorization/api-authorization.module';
 import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
-import { EditGundamComponent } from './edit-gundam/edit-gundam.component';
-import { FetchGundamComponent } from './fetch-gundam/fetch-gundam.component';
+import { EditGundamComponent } from './gundam/edit-gundam/edit-gundam.component';
+import { FetchGundamComponent } from './gundam/fetch-gundam/fetch-gundam.component';
 
 @NgModule({
   declarations: [
