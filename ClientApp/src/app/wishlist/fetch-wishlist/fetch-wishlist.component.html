@@ -1,4 +1,4 @@
-<h1 id="tableLabel">Gundam WishList</h1>
+<h1 id="tableLabel">Gundam Wish List</h1>
 
 <p>This component demonstrates fetching data from the server.</p>
 
@@ -9,13 +9,14 @@
 <p *ngIf="!wishlist?.length"><em>Loading...</em></p>
 
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="wishlist && wishlist.length">
+<table class='table table-dark table-striped mt-3' aria-labelledby="tableLabel" *ngIf="wishlist && wishlist.length">
   <thead>
     <tr>
       <th>Name</th>
       <th>Series</th>
       <th>Grade</th>
       <th>Scale</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -25,7 +26,7 @@
       <td>{{ wishlist.grade }}</td>
       <td>{{ wishlist.scale }}</td>
       <td>
-        <button class="btn-close" (click)="deleteWishList(wishlist)" *ngIf="wishlist.id"></button>
+        <button class="btn btn-danger" (click)="deleteWishList(wishlist)" *ngIf="wishlist.id">Delete</button>
       </td>
     </tr>
   </tbody>

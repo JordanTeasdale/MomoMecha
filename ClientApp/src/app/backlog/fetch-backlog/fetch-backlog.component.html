@@ -9,13 +9,14 @@
 <p *ngIf="!backlogs?.length"><em>Loading...</em></p>
 
 
-<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="backlogs && backlogs.length">
+<table class='table table-dark table-striped mt-3' aria-labelledby="tableLabel" *ngIf="backlogs && backlogs.length">
   <thead>
     <tr>
       <th>Name</th>
       <th>Series</th>
       <th>Grade</th>
       <th>Scale</th>
+      <th>Delete</th>
     </tr>
   </thead>
   <tbody>
@@ -25,7 +26,7 @@
       <td>{{ backlog.grade }}</td>
       <td>{{ backlog.scale }}</td>
       <td>
-        <button class="btn-close" (click)="deleteBacklog(backlog)" *ngIf="backlog.id"></button>
+        <button class="btn btn-danger" (click)="deleteBacklog(backlog)" *ngIf="backlog.id">Delete</button>
       </td>
     </tr>
   </tbody>

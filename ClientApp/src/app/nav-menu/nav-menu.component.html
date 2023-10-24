@@ -1,6 +1,6 @@
 <header>
   <nav
-    class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3"
+    class="navbar navbar-expand-lg bg-dark" data-bs-theme="dark"
   >
     <div class="container">
       <a class="navbar-brand" [routerLink]="['/']">MomoMecha</a>
@@ -21,13 +21,13 @@
       >
         <ul class="navbar-nav flex-grow">
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-wishlist']">Wish List</a>
+            <a class="nav-link" [routerLink]="['/fetch-wishlist']">Wish List</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-backlog']">Backlog</a>
+            <a class="nav-link" [routerLink]="['/fetch-backlog']">Backlog</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/fetch-gundam']">Built Gundams</a>
+            <a class="nav-link" [routerLink]="['/fetch-gundam']">Built Gundams</a>
           </li>
         </ul>
         <app-login-menu></app-login-menu>
