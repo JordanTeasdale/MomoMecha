@@ -38,13 +38,16 @@ export class EditGundamComponent implements OnInit {
       'HG',
       'SD',
       'RE',
-      'Entry'
+      'RE/100',
+      'FM',
+      'EG'
     ];
     this.scales = [
       '1/144',
       '1/100',
       '1/60',
-      '1/72'
+      '1/72',
+      '1/48'
     ];
   }
 

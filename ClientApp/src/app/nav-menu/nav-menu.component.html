@@ -19,6 +19,9 @@
         class="navbar-collapse collapse d-sm-inline-flex justify-content-end"
         [ngClass]="{ show: isExpanded }"
       >
+        <form class="d-flex">
+          <input class="form-control m-2" type="search" placeholder="Search">
+        </form>
         <ul class="navbar-nav flex-grow">
           <li class="nav-item" [routerLinkActive]="['link-active']">
             <a class="nav-link" [routerLink]="['/fetch-wishlist']">Wish List</a>
