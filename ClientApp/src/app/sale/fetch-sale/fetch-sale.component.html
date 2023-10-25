@@ -1,0 +1,36 @@
+<h1 id="tableLabel">Gundams Sale</h1>
+
+<p>This component demonstrates fetching data from the server.</p><br />
+
+<p *ngIf="!sale?.length"><em>Loading...</em></p>
+
+<div class="row mt-3">
+  <div class="col-md-4" *ngFor="let sale of sale">
+    <div class="card">
+      <img [src]="sale.pictureUrl" class="card-img-top" alt="Gundam Image">
+      <div class="card-body">
+        <h5 class="card-title">{{ sale.name }}</h5>
+        <p class="card-text">
+          <del><strong>$</strong> {{ sale.price | number:'1.2-2' }}</del><br>
+          <strong class="text-info"><strong>$</strong> {{ sale.salePrice | number:'1.2-2' }}</strong><br>
+        </p>
+        <a href="{{ sale.link }}" target="_blank" rel="noopener noreferrer">
+          <span class="btn btn-outline-info">View</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .card {
+    height: 600px;
+    margin-bottom: 20px;
+  }
+
+  .card-img-top {
+    object-fit: cover;
+    object-position: top;
+    height: 64%;
+  }
+</style>

@@ -9,6 +9,7 @@ const PROXY_CONFIG = [
       "/gundams",
       "/backlog",
       "/wishList",
+      "/sale",
       "/_configuration",
       "/.well-known",
       "/Identity",

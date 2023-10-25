@@ -16,6 +16,7 @@ import { FetchBacklogComponent } from './backlog/fetch-backlog/fetch-backlog.com
 import { EditBacklogComponent } from './backlog/edit-backlog/edit-backlog.component';
 import { FetchWishlistComponent } from './wishlist/fetch-wishlist/fetch-wishlist.component';
 import { EditWishlistComponent } from './wishlist/edit-wishlist/edit-wishlist.component';
+import { FetchSaleComponent } from './sale/fetch-sale/fetch-sale.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { EditWishlistComponent } from './wishlist/edit-wishlist/edit-wishlist.co
     FetchBacklogComponent,
     EditBacklogComponent,
     FetchWishlistComponent,
-    EditWishlistComponent
+    EditWishlistComponent,
+    FetchSaleComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
@@ -39,6 +41,7 @@ import { EditWishlistComponent } from './wishlist/edit-wishlist/edit-wishlist.co
       { path: 'fetch-gundam', component: FetchGundamComponent, canActivate: [AuthorizeGuard] },
       { path: 'fetch-backlog', component: FetchBacklogComponent, canActivate: [AuthorizeGuard] },
       { path: 'fetch-wishlist', component: FetchWishlistComponent, canActivate: [AuthorizeGuard] },
+      { path: 'fetch-sale', component: FetchSaleComponent },
     ])
   ],
   providers: [
