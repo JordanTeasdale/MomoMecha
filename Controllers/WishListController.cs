@@ -31,6 +31,32 @@ namespace MomoMecha.Controllers
             return Ok(model);
         }
 
+        [AllowAnonymous]
+        [HttpGet("{username}")]
+        public async Task<ActionResult<List<WishList>>> Get(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            var model = await _context.WishList
+                .Where(w => w.ApplicationUser.UserName == user.UserName)
+                .Select(w => new
+                {
+                    w.Id,
+                    w.Name,
+                    w.Series,
+                    w.Grade,
+                    w.Scale
+                })
+            .ToListAsync();
+
+            return Ok(model);
+        }
+
         [HttpPost]
         public async Task<ActionResult<List<WishList>>> Post(WishList wishList)
         {

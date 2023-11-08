@@ -14,6 +14,9 @@ export class BacklogService {
   public getBacklog() : Observable<Backlog[]> {
     return this.http.get<Backlog[]>(`${environment.baseUrl}/${this.url}`);
   }
+  public getUserBacklog(userName: string) : Observable<Backlog[]> {
+    return this.http.get<Backlog[]>(`${environment.baseUrl}/${this.url}/${userName}`);
+  }
   public createBacklog(backlog: Backlog) : Observable<Backlog[]> {
     return this.http.post<Backlog[]>(`${environment.baseUrl}/${this.url}`, backlog);
   }

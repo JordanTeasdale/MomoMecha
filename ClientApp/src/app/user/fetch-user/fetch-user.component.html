@@ -1,0 +1,75 @@
+<div class="input-group mb-3"> <input type="text" class="form-control" [(ngModel)]="userName" (input)="search()" placeholder="Search Users">
+</div>
+<h1>{{userName}}</h1>
+<nav>
+  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-gundam" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Gundams</button>
+    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-backlog" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Backlog</button>
+    <button class="nav-link" id="nav-contact-tab" data-bs-toggle="tab" data-bs-target="#nav-wishlist" type="button" role="tab" aria-controls="nav-contact" aria-selected="false">Wish List</button>
+  </div>
+</nav>
+<div class="tab-content" id="nav-tabContent">
+  <div class="tab-pane fade show active" id="nav-gundam" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+    <div class="row mt-3">
+      <div class="col-md-4" *ngFor="let gundam of gundams">
+        <div class="card mb-3">
+          <img [src]="gundam.imageUrl" class="card-img-top" alt="Gundam Image">
+          <div class="card-body">
+            <h5 class="card-title">{{ gundam.name }}</h5>
+            <p class="card-text">
+            <strong>Series:</strong> {{ gundam.series }}<br>
+            <strong>Grade:</strong> {{ gundam.grade }}<br>
+            <strong>Scale:</strong> {{ gundam.scale }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-pane fade" id="nav-backlog" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+    <table class='table table-dark table-striped mt-3' aria-labelledby="tableLabel" *ngIf="backlogs && backlogs.length">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Series</th>
+          <th>Grade</th>
+          <th>Scale</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let backlog of backlogs">
+          <td>{{ backlog.name }}</td>
+          <td>{{ backlog.series }}</td>
+          <td>{{ backlog.grade }}</td>
+          <td>{{ backlog.scale }}</td>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="nav-wishlist" role="tabpanel" aria-labelledby="nav-contact-tab" tabindex="0">
+    <table class='table table-dark table-striped mt-3' aria-labelledby="tableLabel" *ngIf="wishlist && wishlist.length">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Series</th>
+          <th>Grade</th>
+          <th>Scale</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let wishlist of wishlist">
+          <td>{{ wishlist.name }}</td>
+          <td>{{ wishlist.series }}</td>
+          <td>{{ wishlist.grade }}</td>
+          <td>{{ wishlist.scale }}</td>
+          <td>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

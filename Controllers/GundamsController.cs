@@ -34,6 +34,33 @@ namespace MomoMecha.Controllers
             return Ok(model);
         }
 
+        [AllowAnonymous]
+        [HttpGet("{username}")]
+        public async Task<ActionResult<List<Gundam>>> Get(string username)
+        {
+            var user = await _userManager.FindByNameAsync(username);
+
+            if (user == null)
+            {
+                return NotFound("User not found");
+            }
+
+            var model = await _context.Gundams
+                .Where(g => g.ApplicationUser.UserName == user.UserName)
+                .Select(g => new
+                {
+                    g.Id,
+                    g.Name,
+                    g.Series,
+                    g.Grade,
+                    g.Scale,
+                    g.ImageUrl
+                })
+            .ToListAsync();
+
+            return Ok(model);
+        }
+
         [HttpPost]
         public async Task<ActionResult<List<Gundam>>> Post([FromForm] Gundam gundam, IFormFile file)
         {

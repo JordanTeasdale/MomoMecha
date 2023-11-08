@@ -14,6 +14,9 @@ export class WishlistService {
   public getWishList() : Observable<WishList[]> {
     return this.http.get<WishList[]>(`${environment.baseUrl}/${this.url}`);
   }
+  public getUserWishList(userName: string) : Observable<WishList[]> {
+    return this.http.get<WishList[]>(`${environment.baseUrl}/${this.url}/${userName}`);
+  }
   public createWishList(wishlist: WishList) : Observable<WishList[]> {
     return this.http.post<WishList[]>(`${environment.baseUrl}/${this.url}`, wishlist);
   }

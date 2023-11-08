@@ -14,6 +14,9 @@ export class GundamService {
   public getGundam() : Observable<Gundam[]> {
     return this.http.get<Gundam[]>(`${environment.baseUrl}/${this.url}`);
   }
+  public getUserGundam(userName: string) : Observable<Gundam[]> {
+    return this.http.get<Gundam[]>(`${environment.baseUrl}/${this.url}/${userName}`);
+  }
   public createGundam(formData: FormData) : Observable<Gundam[]> {
     return this.http.post<Gundam[]>(`${environment.baseUrl}/${this.url}`, formData);
   }
