@@ -26,4 +26,19 @@ export class FetchUserComponent {
     this.backlogService.getUserBacklog(this.userName).subscribe((result: Backlog[]) => (this.backlogs = result));
     this.wishlistService.getUserWishList(this.userName).subscribe((result: Gundam[]) => (this.wishlist = result));
   }
+
+  favoriteUsers: string[] = [];
+
+  addToFavorites() {
+    if (this.userName && !this.favoriteUsers.includes(this.userName)) {
+      this.favoriteUsers.push(this.userName);
+    }
+  }
+
+  removeFromFavorites(user: string) {
+    const index = this.favoriteUsers.indexOf(user);
+    if (index !== -1) {
+      this.favoriteUsers.splice(index, 1);
+    }
+  }
 }
