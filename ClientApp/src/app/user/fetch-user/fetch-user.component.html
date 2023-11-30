@@ -1,4 +1,6 @@
-<div class="input-group mb-3"> <input type="text" class="form-control" [(ngModel)]="userName" (input)="search()" placeholder="Search Users">
+<div class="input-group m-3">
+  <input type="text" class="form-control" [(ngModel)]="userName" (keyup.enter)="search()" placeholder="Search Users">
+  <button class="btn btn-outline-success" type="button" (click)="search()">Search</button>
 </div>
 <h1>{{userName}}</h1>
 <nav>
