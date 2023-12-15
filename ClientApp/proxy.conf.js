@@ -10,6 +10,7 @@ const PROXY_CONFIG = [
       "/backlog",
       "/wishList",
       "/sale",
+      "/favoriteuser",
       "/_configuration",
       "/.well-known",
       "/Identity",
