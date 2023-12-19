@@ -47,6 +47,6 @@ export class FetchUserComponent {
   search() {
     this.gundamService.getUserGundam(this.userName).subscribe((result: Gundam[]) => (this.gundams = result));
     this.backlogService.getUserBacklog(this.userName).subscribe((result: Backlog[]) => (this.backlogs = result));
-    this.wishlistService.getUserWishList(this.userName).subscribe((result: Gundam[]) => (this.wishlist = result));
+    this.wishlistService.getUserWishList(this.userName).subscribe((result: WishList[]) => (this.wishlist = result));
   }
 }
